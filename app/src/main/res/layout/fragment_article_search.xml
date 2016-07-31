@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<RelativeLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/wood_paper_2"
+        android:scaleType="fitXY"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/dateContainer"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:layout_marginTop="60dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/tvBeginDateLbl"
+            android:textSize="@dimen/search_filter_text_size"
+            android:textStyle="bold"
+            android:textColor="@color/searchFragmentTextColor"
             android:text="Begin Date"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
+            android:textStyle="bold"
+            android:textSize="@dimen/search_filter_text_size"
+            android:textColor="@color/searchFragmentTextColor"
             android:id="@+id/etBeginDate" />
     </LinearLayout>
 
@@ -28,12 +45,16 @@
         android:id="@+id/sortContainer"
         android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
-        android:layout_alignLeft="@id/dateContainer"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/search_filter_text_size"
+            android:id="@+id/tvSortOrderLbl"
+            android:textStyle="bold"
             android:text="Sort Order"
+            android:textColor="@color/searchFragmentTextColor"
+
             />
         <android.support.v7.widget.AppCompatSpinner
             android:layout_width="wrap_content"
@@ -41,6 +62,8 @@
             android:id="@+id/spinSortOrder"
             android:entries="@array/search_filter_sort_contents"
             android:layout_marginLeft="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/searchFragmentTextColor"
             ></android.support.v7.widget.AppCompatSpinner>
     </LinearLayout>
 
@@ -56,7 +79,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/tvNewsDeskLbl"
             android:text="News Desk Values"
+            android:textStyle="bold"
+            android:textColor="@color/searchFragmentTextColor"
+            android:textSize="@dimen/search_filter_text_size"
             />
         <LinearLayout
             android:orientation="vertical"
@@ -66,14 +93,23 @@
             <CheckBox android:id="@+id/cbCategoryArts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/search_filter_text_size"
+                android:textColor="@color/searchFragmentTextColor"
+                android:textStyle="bold"
                 android:text="@string/article_category_arts" />
             <CheckBox android:id="@+id/cbCategoryFashion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/searchFragmentTextColor"
+                android:textSize="@dimen/search_filter_text_size"
                 android:text="@string/article_category_fashion" />
             <CheckBox android:id="@+id/cbCategorySports"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/searchFragmentTextColor"
+                android:textSize="@dimen/search_filter_text_size"
                 android:text="@string/article_category_sports" />
         </LinearLayout>
     </LinearLayout>
@@ -83,6 +119,10 @@
         android:text="@string/article_filter_save"
         android:layout_below="@+id/categoryContainer"
         android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/search_filter_text_size"
+        android:background="@drawable/wood_btn_background"
         android:id="@+id/btnSaveFilter"
         android:layout_centerHorizontal="true"
         />

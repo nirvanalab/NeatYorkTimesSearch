@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#935628</color>
     <color name="colorAccent">#FF4081</color>
     <color name="cardViewColor">#edd2a4</color>
+    <color name="searchFragmentTextColor">#3f2a14</color>
 
 </resources>

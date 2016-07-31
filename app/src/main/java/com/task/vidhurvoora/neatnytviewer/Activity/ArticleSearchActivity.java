@@ -1,6 +1,7 @@
 package com.task.vidhurvoora.neatnytviewer.Activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.task.vidhurvoora.neatnytviewer.Adapter.ArticleAdapter;
 import com.task.vidhurvoora.neatnytviewer.Fragment.ArticleSearchFragment;
@@ -35,8 +37,8 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
     private ArrayList<Article> articles = new ArrayList<Article>();
     private ArticleAdapter articleAdapter;
     private String currentQuery;
-    private Toolbar toolbar;
     ArticleFilterCriteria searchFilterCriteria;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,10 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
         setContentView(R.layout.activity_neat_nytmain);
 
         //get the Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tbArticleMain);
+        toolbar = (Toolbar) findViewById(R.id.tbArticleMain);
         setSupportActionBar(toolbar);
+        setupTitle();
+
 
 //        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
 //        getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -85,7 +89,6 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
                 startActivity(intent);
             }
         });
-
 
     }
 
@@ -131,6 +134,16 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
         searchFragment.show(fragmentManager,"fragment_article_search");
     }
 
+    private void setupTitle(){
+        // Remove default title text
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // Get access to the custom title view
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        // Create the TypeFace from the TTF asset
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/old_english_regular.ttf");
+        // Assign the typeface to the view
+        mTitle.setTypeface(font);
+    }
 
 
     @Override

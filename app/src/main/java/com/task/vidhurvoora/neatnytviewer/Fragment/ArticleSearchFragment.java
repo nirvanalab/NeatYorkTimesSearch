@@ -1,5 +1,8 @@
 package com.task.vidhurvoora.neatnytviewer.Fragment;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -14,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.task.vidhurvoora.neatnytviewer.Model.ArticleFilterCriteria;
 import com.task.vidhurvoora.neatnytviewer.Model.ArticleFilterSettingsManager;
@@ -53,7 +57,17 @@ public class ArticleSearchFragment extends DialogFragment implements DatePickerF
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         return inflater.inflate(R.layout.fragment_article_search, container);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        float width = getResources().getDimension(R.dimen.search_filter_popup_w);
+        float height  = getResources().getDimension(R.dimen.search_filter_popup_h);
+        getDialog().getWindow().setLayout((int)width,(int)height);
     }
 
     @Override
@@ -95,8 +109,51 @@ public class ArticleSearchFragment extends DialogFragment implements DatePickerF
         //setup checkbox
         setupCheckboxes(view);
 
+        //setup fonts
+        setupFontsForUI(view);
+
     }
 
+    private void setupFontsForUI(View view){
+        // Create the TypeFace from the TTF asset
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/alex_brush_reg.ttf");
+        // Get access to our View
+        TextView tvBeginDateLbl = (TextView) view.findViewById(R.id.tvBeginDateLbl);
+        // Assign the typeface to the view
+        tvBeginDateLbl.setTypeface(font);
+        // Get access to our View
+        TextView tvSortOrderLbl = (TextView) view.findViewById(R.id.tvSortOrderLbl);
+        // Assign the typeface to the view
+        tvSortOrderLbl.setTypeface(font);
+        // Get access to our View
+        TextView tvNewsDeskLbl = (TextView) view.findViewById(R.id.tvNewsDeskLbl);
+        // Assign the typeface to the view
+        tvNewsDeskLbl.setTypeface(font);
+        // Get access to our View
+        EditText etBeginDate = (EditText) view.findViewById(R.id.etBeginDate);
+        // Assign the typeface to the view
+        etBeginDate.setTypeface(font);
+        // Get access to our View
+        Button btnSaveFilter = (Button) view.findViewById(R.id.btnSaveFilter);
+        // Assign the typeface to the view
+        btnSaveFilter.setTypeface(font);
+        // Get access to our View
+        Spinner spinSortOrder = (Spinner) view.findViewById(R.id.spinSortOrder);
+        // Assign the typeface to the view
+//        TextView spinView = (TextView)spinSortOrder.getRootView();
+//        spinView.setTypeface(font);
+
+        CheckBox cbCategoryArts = (CheckBox) view.findViewById(R.id.cbCategoryArts);
+        // Assign the typeface to the view
+        cbCategoryArts.setTypeface(font);
+        CheckBox cbCategoryFashion = (CheckBox) view.findViewById(R.id.cbCategoryFashion);
+        // Assign the typeface to the view
+        cbCategoryFashion.setTypeface(font);
+        CheckBox cbCategorySports = (CheckBox) view.findViewById(R.id.cbCategorySports);
+        // Assign the typeface to the view
+        cbCategorySports.setTypeface(font);
+
+    }
     //checkbox listner
     CompoundButton.OnCheckedChangeListener checkListner = new CompoundButton.OnCheckedChangeListener(){
         @Override

@@ -4,22 +4,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    card_view:cardBackgroundColor="@color/cardViewColor"
-    card_view:cardCornerRadius="8dp"
     card_view:cardElevation="8dp"
+    card_view:cardBackgroundColor="@android:color/transparent"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground">
 
+
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:src="@drawable/wood_paper_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:scaleType="fitXY"
-            android:layout_margin="15dp"
+            android:layout_margin="35dp"
             android:id="@+id/ivArticleImage"/>
         <TextView
             android:layout_width="wrap_content"

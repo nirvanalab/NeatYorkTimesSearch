@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/spinItem"
+    android:singleLine="true"
+    android:textSize="@dimen/search_filter_text_size"
+    android:textColor="@color/searchFragmentTextColor"
+    android:textStyle="bold"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="marquee" />

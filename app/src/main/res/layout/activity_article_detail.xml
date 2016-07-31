@@ -3,21 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context="com.task.vidhurvoora.neatnytviewer.Activity.ArticleDetailActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/wood_paper_1"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"/>
 
     <android.support.v7.widget.Toolbar
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:background="@drawable/wood_banner_3"
         android:titleTextColor="@android:color/white"
-        android:id="@+id/tbArticleDetail"/>
+        android:id="@+id/tbArticleDetail">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Neat York Times Search"
+            android:layout_gravity="center"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:id="@+id/toolbar_detail_title" />
+    </android.support.v7.widget.Toolbar>
+
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressTint="@color/cardview_dark_background"
+        android:layout_centerInParent="true"/>
 
     <WebView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="60dp"
         android:id="@+id/wvArticleDetail"
         android:layout_below="@id/tbArticleDetail"
-        android:background="@drawable/wood_background_2"
+        android:background="@android:color/transparent"
         />
 
 </RelativeLayout>

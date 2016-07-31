@@ -14,9 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.task.vidhurvoora.neatnytviewer.Adapter.ArticleAdapter;
 import com.task.vidhurvoora.neatnytviewer.Fragment.ArticleSearchFragment;
+import com.task.vidhurvoora.neatnytviewer.Fragment.CustomCatLoader;
 import com.task.vidhurvoora.neatnytviewer.Model.Article;
 import com.task.vidhurvoora.neatnytviewer.Model.ArticleFilterCriteria;
 import com.task.vidhurvoora.neatnytviewer.Model.ArticleFilterSettingsManager;
@@ -27,10 +29,12 @@ import com.task.vidhurvoora.neatnytviewer.ThirdPartyDecoration.DividerItemDecora
 import com.task.vidhurvoora.neatnytviewer.ThirdPartyDecoration.GridDividerDecoration;
 import com.task.vidhurvoora.neatnytviewer.ThirdPartyDecoration.InsetDecoration;
 import com.task.vidhurvoora.neatnytviewer.Utility.EndlessRecyclerViewScrollListener;
+import com.task.vidhurvoora.neatnytviewer.Utility.UtilityManager;
 
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+
 
 public class ArticleSearchActivity extends AppCompatActivity implements ArticleSearchFragment.OnArticleFilterCriteriaUpdateListener {
 
@@ -39,6 +43,9 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
     private String currentQuery;
     ArticleFilterCriteria searchFilterCriteria;
     private Toolbar toolbar;
+    UtilityManager utilityManager;
+    Toast networkAlertToast;
+    CustomCatLoader mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,12 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
         setSupportActionBar(toolbar);
         setupTitle();
 
+        utilityManager = UtilityManager.getSharedInstance();
+
+        networkAlertToast = Toast.makeText(getApplicationContext(),"Please make sure you are connected network!",Toast.LENGTH_LONG);
+
+        mView = new CustomCatLoader();
+        mView.show(getSupportFragmentManager(),"");
 
 //        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
 //        getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -83,6 +96,13 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
         articleAdapter.setOnItemClickListener(new ArticleAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View itemView, int position) {
+
+                //check if network connected
+                if (!utilityManager.shouldPerformNetworkRequest(getApplicationContext())) {
+                    //show a toast for now
+                    networkAlertToast.show();
+                    return;
+                }
                 Article article = articles.get(position);
                 Intent intent = new Intent(ArticleSearchActivity.this,ArticleDetailActivity.class);
                 intent.putExtra("article", Parcels.wrap(article));
@@ -101,6 +121,7 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
                 currentQuery = query;
                 clearArticles();
                 //fetch new articles
+                mView.show(getSupportFragmentManager(), "");
                 fetchArticles(query,0,searchFilterCriteria);
                 searchView.clearFocus();
                 return true;
@@ -165,6 +186,14 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
     }
 
     private void fetchArticles(String query, int page,ArticleFilterCriteria filterCriteria){
+
+        //check if network connected
+        if (!utilityManager.shouldPerformNetworkRequest(getApplicationContext())) {
+            //show a toast for now
+            networkAlertToast.show();
+            return;
+        }
+
         if (filterCriteria == null ) {
             ArticleManager.getSharedInstance().fetchArticleSearchResults(query, page, new ArticleSearchResponseHandler() {
                 @Override
@@ -181,6 +210,7 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
             ArticleManager.getSharedInstance().fetchArticleSearchResults(query, page,filterCriteria, new ArticleSearchResponseHandler() {
                 @Override
                 public void articleSearchResults(boolean isSuccess, ArrayList<Article> newArticles) {
+                    mView.dismiss();
                     if (isSuccess) {
                         int existingSize = articles.size();
                         articles.addAll(newArticles);
@@ -197,6 +227,7 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
         ArticleFilterSettingsManager.getSharedInstance().saveFilterCriteria(filterCriteria,getApplicationContext());
        clearArticles();
         searchFilterCriteria = filterCriteria;
+        mView.show(getSupportFragmentManager(), "");
         fetchArticles(currentQuery,0,filterCriteria);
     }
 }

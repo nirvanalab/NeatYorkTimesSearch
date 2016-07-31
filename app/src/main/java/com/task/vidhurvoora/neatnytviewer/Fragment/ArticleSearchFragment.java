@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -221,6 +222,42 @@ public class ArticleSearchFragment extends DialogFragment implements DatePickerF
 
     private void setupSpinner(View view){
         spinSortOrder = (Spinner)view.findViewById(R.id.spinSortOrder);
+        String [] items = new String[2];
+        items[0]="oldest";
+        items[1]="newest";
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_item, items) {
+
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+               // v.setBackgroundColor(Color.TRANSPARENT);
+
+                Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/alex_brush_reg.ttf");
+                ((TextView) v).setTypeface(externalFont);
+
+                return v;
+            }
+
+
+            public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
+                View v =super.getDropDownView(position, convertView, parent);
+
+                Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/alex_brush_reg.ttf");
+                ((TextView) v).setTypeface(externalFont);
+                //((TextView) v).setTextSize(R.dimen.search_filter_text_size);
+                ((TextView) v).setTextSize(35);
+                v.setBackgroundColor(Color.BLACK);
+
+
+                return v;
+            }
+        };
+
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinSortOrder.setAdapter(adapter);
+
         if (filterCriteria.getShouldSortByNewest()) {
             spinSortOrder.setSelection(0);
         }

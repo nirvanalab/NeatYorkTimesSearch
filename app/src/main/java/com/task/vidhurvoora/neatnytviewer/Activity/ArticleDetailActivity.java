@@ -2,6 +2,9 @@ package com.task.vidhurvoora.neatnytviewer.Activity;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -14,7 +17,10 @@ import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.task.vidhurvoora.neatnytviewer.Fragment.CustomCatLoader;
 import com.task.vidhurvoora.neatnytviewer.Model.Article;
 import com.task.vidhurvoora.neatnytviewer.R;
 
@@ -24,20 +30,30 @@ public class ArticleDetailActivity extends AppCompatActivity {
 
     private WebView wvArticleDetail;
     Article article;
-
+    Toolbar toolbar;
+    ProgressBar pbLoading;
+    CustomCatLoader mView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tbArticleDetail);
+        toolbar = (Toolbar) findViewById(R.id.tbArticleDetail);
         setSupportActionBar(toolbar);
+        setupToolbarTitle();
+
+        pbLoading = (ProgressBar)findViewById(R.id.pbLoading);
+        mView = new CustomCatLoader();
 
         wvArticleDetail = (WebView) findViewById(R.id.wvArticleDetail);
         configureWebview();
 
         article = Parcels.unwrap(getIntent().getParcelableExtra("article"));
         if (article != null  && article.web_url != null ) {
+            //show progress bar
+//            pbLoading.setVisibility(ProgressBar.VISIBLE);
+
+            mView.show(getSupportFragmentManager(), "");
             wvArticleDetail.loadUrl(article.web_url);
         }
 
@@ -45,6 +61,7 @@ public class ArticleDetailActivity extends AppCompatActivity {
 
     private void configureWebview() {
         //various webview configuration settings
+        wvArticleDetail.setBackgroundColor(Color.TRANSPARENT);
         wvArticleDetail.setWebViewClient(new MyBrowser());
         wvArticleDetail.getSettings().setLoadsImagesAutomatically(true);
         wvArticleDetail.getSettings().setJavaScriptEnabled(true);
@@ -77,6 +94,34 @@ public class ArticleDetailActivity extends AppCompatActivity {
             view.loadUrl(request.getUrl().toString());
             return true;
         }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+
+            String dynamicJs =  "javascript:( function() { document.body.style.backgroundColor = \"transparent\";document.head.style.backgroundColor = \"transparent\"; })()";
+            wvArticleDetail.loadUrl(dynamicJs);
+            super.onPageStarted(view, url, favicon);
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+//            pbLoading.setVisibility(ProgressBar.INVISIBLE);
+            mView.dismiss();
+            super.onPageFinished(view, url);
+           String dynamicJs =  "javascript:( function() { document.body.style.backgroundColor = \"transparent\";document.head.style.backgroundColor = \"transparent\";})()";
+            wvArticleDetail.loadUrl(dynamicJs);
+        }
+    }
+
+    private void setupToolbarTitle(){
+        // Remove default title text
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // Get access to the custom title view
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_detail_title);
+        // Create the TypeFace from the TTF asset
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/old_english_regular.ttf");
+        // Assign the typeface to the view
+        mTitle.setTypeface(font);
     }
 
     @Override

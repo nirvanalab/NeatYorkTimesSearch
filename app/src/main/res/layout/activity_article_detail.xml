@@ -8,7 +8,7 @@
     <android.support.v7.widget.Toolbar
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:background="@android:color/black"
+        android:background="@drawable/wood_banner_3"
         android:titleTextColor="@android:color/white"
         android:id="@+id/tbArticleDetail"/>
 
@@ -17,6 +17,7 @@
         android:layout_height="match_parent"
         android:id="@+id/wvArticleDetail"
         android:layout_below="@id/tbArticleDetail"
+        android:background="@drawable/wood_background_2"
         />
 
 </RelativeLayout>

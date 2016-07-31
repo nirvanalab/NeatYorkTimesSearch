@@ -3,6 +3,7 @@ package com.task.vidhurvoora.neatnytviewer.Model;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.task.vidhurvoora.neatnytviewer.R;
 
@@ -38,7 +39,8 @@ public class ArticleFilterSettingsManager
         if ( criteria.newsDeskComponents != null ) {
             edit.putStringSet("news_desk_components", criteria.newsDeskComponents);
         }
-        edit.commit();
+        Boolean isSuccess = edit.commit();
+        Log.d("Success","Blah");
 //        edit.apply();
     }
 

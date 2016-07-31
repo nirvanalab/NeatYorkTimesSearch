@@ -21,6 +21,9 @@ import com.task.vidhurvoora.neatnytviewer.Model.ArticleFilterSettingsManager;
 import com.task.vidhurvoora.neatnytviewer.Model.ArticleManager;
 import com.task.vidhurvoora.neatnytviewer.Model.ArticleSearchResponseHandler;
 import com.task.vidhurvoora.neatnytviewer.R;
+import com.task.vidhurvoora.neatnytviewer.ThirdPartyDecoration.DividerItemDecoration;
+import com.task.vidhurvoora.neatnytviewer.ThirdPartyDecoration.GridDividerDecoration;
+import com.task.vidhurvoora.neatnytviewer.ThirdPartyDecoration.InsetDecoration;
 import com.task.vidhurvoora.neatnytviewer.Utility.EndlessRecyclerViewScrollListener;
 
 import org.parceler.Parcels;
@@ -58,6 +61,13 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
         rvArticles.setAdapter(articleAdapter);
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
         rvArticles.setLayoutManager(gridLayoutManager);
+
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST);
+        rvArticles.addItemDecoration(itemDecoration);
+        RecyclerView.ItemDecoration insetDec = new InsetDecoration(this);
+        rvArticles.addItemDecoration(insetDec);
+        RecyclerView.ItemDecoration gridDec = new GridDividerDecoration(this);
+        rvArticles.addItemDecoration(gridDec);
 
         rvArticles.addOnScrollListener(new EndlessRecyclerViewScrollListener(gridLayoutManager) {
             @Override
@@ -171,6 +181,7 @@ public class ArticleSearchActivity extends AppCompatActivity implements ArticleS
 
     @Override
     public void onArticleFilterCriteriaUpdated(ArticleFilterCriteria filterCriteria) {
+        ArticleFilterSettingsManager.getSharedInstance().saveFilterCriteria(filterCriteria,getApplicationContext());
        clearArticles();
         searchFilterCriteria = filterCriteria;
         fetchArticles(currentQuery,0,filterCriteria);

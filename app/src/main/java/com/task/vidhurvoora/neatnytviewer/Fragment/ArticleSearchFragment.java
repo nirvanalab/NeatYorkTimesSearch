@@ -68,7 +68,6 @@ public class ArticleSearchFragment extends DialogFragment implements DatePickerF
             public void onClick(View view) {
                 if (mListener != null) {
                     //save the criteria
-                    ArticleFilterSettingsManager.getSharedInstance().saveFilterCriteria(filterCriteria,getActivity().getApplicationContext());
                     mListener.onArticleFilterCriteriaUpdated(filterCriteria);
                     getDialog().dismiss();
                 }

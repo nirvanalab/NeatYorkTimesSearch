@@ -9,7 +9,7 @@
     </style>
 
     <style name="ArticleDetailTheme" parent="Theme.AppCompat.NoActionBar">
-
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
 </resources>

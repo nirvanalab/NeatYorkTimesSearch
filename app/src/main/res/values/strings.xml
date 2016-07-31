@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">NewYork Times Viewer </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="search_filter_sort_contents">
+        <item>newest</item>
+        <item>oldest</item>
+    </string-array>
+    <string name="sort_order_prompt">Sort Order</string>
+    <string name="article_category_arts">Arts</string>
+    <string name="article_category_fashion">Fashion &amp;Style</string>
+    <string name="article_category_sports">Sports</string>
+    <string name="article_filter_save">Save</string>
+</resources>

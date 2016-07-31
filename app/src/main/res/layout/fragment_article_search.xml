@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/dateContainer"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Begin Date"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/etBeginDate" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/dateContainer"
+        android:id="@+id/sortContainer"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
+        android:layout_alignLeft="@id/dateContainer"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort Order"
+            />
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinSortOrder"
+            android:entries="@array/search_filter_sort_contents"
+            android:layout_marginLeft="50dp"
+            ></android.support.v7.widget.AppCompatSpinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/sortContainer"
+        android:layout_marginTop="50dp"
+        android:id="@+id/categoryContainer"
+        android:gravity="center_horizontal"
+        android:layout_alignLeft="@id/dateContainer">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="News Desk Values"
+            />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp">
+            <CheckBox android:id="@+id/cbCategoryArts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/article_category_arts" />
+            <CheckBox android:id="@+id/cbCategoryFashion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/article_category_fashion" />
+            <CheckBox android:id="@+id/cbCategorySports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/article_category_sports" />
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/article_filter_save"
+        android:layout_below="@+id/categoryContainer"
+        android:layout_marginTop="50dp"
+        android:id="@+id/btnSaveFilter"
+        android:layout_centerHorizontal="true"
+        />
+
+
+</RelativeLayout>

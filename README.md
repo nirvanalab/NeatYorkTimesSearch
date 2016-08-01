@@ -42,12 +42,12 @@ The following **bonus** features are implemented:
 The following **additional** features are implemented:
 
 * [x] Search Filter Criteria are stored using the [Shared Preferences](http://guides.codepath.com/android/Persisting-Data-to-the-Device) which helps it save and restore across app sessions.
-* [x]Customized most of the UI components
-* [x]Implemented [custom progress bar](http://guides.codepath.com/android/Handling-ProgressBars) using the [Cat Loading View](https://github.com/Rogero0o/CatLoadingView)
+* [x] Customized most of the UI components
+* [x] Implemented [custom progress bar](http://guides.codepath.com/android/Handling-ProgressBars) using the [Cat Loading View](https://github.com/Rogero0o/CatLoadingView)
 * [x] Implemented dynamic Javascript injection in the webview to make the webpage body transparent.[Check discussion here](http://stackoverflow.com/questions/32601885/dynamically-change-html-element-in-android-webview)
-* [x]Used [custom fonts](http://guides.codepath.com/android/Working-with-the-TextView#using-custom-fonts)
-* [x]Customized the [spinner bar with custom fonts](http://stackoverflow.com/questions/5483495/how-to-set-font-custom-font-to-spinner-text-programmatically) 
-* [x][Custom layout decorators](https://github.com/devunwired/recyclerview-playground) for Recycler View.
+* [x] Used [custom fonts](http://guides.codepath.com/android/Working-with-the-TextView#using-custom-fonts)
+* [x] Customized the [spinner bar with custom fonts](http://stackoverflow.com/questions/5483495/how-to-set-font-custom-font-to-spinner-text-programmatically) 
+* [x] [Custom layout decorators](https://github.com/devunwired/recyclerview-playground) for Recycler View.
 
 ## Video Walkthrough
 

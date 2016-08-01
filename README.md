@@ -2,7 +2,7 @@
 
 **NeatYorkTimes Search** is an android app that allows a user to search for articles on web using simple filters. The app utilizes [New York Times Search API](http://developer.nytimes.com/docs/read/article_search_api_v2).
 
-Time spent: **25** hours spent in total
+Time spent: **35** hours spent in total
 
 ## User Stories
 
@@ -53,12 +53,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://raw.githubusercontent.com/nirvanalab/NeatNYTViewer/master/NeatYorkTimes.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
-
-## Notes
-
 
 
 ## Open-source libraries used
@@ -66,6 +63,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 - [Retrofit](http://square.github.io/retrofit/) - Retrofit turns your HTTP API into a Java interface.
 - [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
 - [Gson](http://guides.codepath.com/android/Leveraging-the-Gson-Library) - Google's Gson library provides a powerful framework for converting between JSON strings and Java objects.
+- [Custom layout decorators](https://github.com/devunwired/recyclerview-playground) for Recycler View.
+- [Custom progress bar](http://guides.codepath.com/android/Handling-ProgressBars) using the [Cat Loading View](https://github.com/Rogero0o/CatLoadingView)
 
 ## License
 

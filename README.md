@@ -42,6 +42,7 @@ The following **bonus** features are implemented:
 The following **additional** features are implemented:
 
 * [x] Search Filter Criteria are stored using the [Shared Preferences](http://guides.codepath.com/android/Persisting-Data-to-the-Device) which helps it save and restore across app sessions.
+* [x] [Customize Toolbar] (http://guides.codepath.com/android/Using-the-App-ToolBar#styling-the-toolbar)
 * [x] Customized most of the UI components
 * [x] Implemented [custom progress bar](http://guides.codepath.com/android/Handling-ProgressBars) using the [Cat Loading View](https://github.com/Rogero0o/CatLoadingView)
 * [x] Implemented dynamic Javascript injection in the webview to make the webpage body transparent.[Check discussion here](http://stackoverflow.com/questions/32601885/dynamically-change-html-element-in-android-webview)
